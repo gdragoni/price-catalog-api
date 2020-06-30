@@ -1,0 +1,22 @@
+{
+  "name": "price-catalog-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdragoni/price-catalog-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdragoni/price-catalog-api/issues"
+  },
+  "homepage": "https://github.com/gdragoni/price-catalog-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
