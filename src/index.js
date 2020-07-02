@@ -1,8 +1,17 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+
 const app = express();
 
-app.get('/', (req, res) => res.send('I love you, Greiziele <3!'));
+app.use(bodyParser.urlencoded({ extended: true }))
 
-app.listen(process.env.PORT || 3000, function() {
-    console.log('Is running');
-});
+const MarketController = require('./controller/Market');
+
+app.get('/produto', MarketController.find);
+
+app.post('/produto/add', MarketController.store)
+
+mongoose.connect(process.env.MONGOLAB_URI, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => console.log("MongoDB succefully"));
+
+app.listen(process.env.PORT || 3000, () => console.log('Is running'));
