@@ -1,20 +1,21 @@
 const mongoose = require("mongoose");
 
 const MarketSchema = new mongoose.Schema({
-    id: {
-        type: String,
-    },
     name: {
         type: String,
+        required: true,
     },
     lat: {
         type: Number,
+        required: true,
     },
     lng: {
         type: Number,
+        required: true,
     },
     type: {
         type: Number,
+        required: true,
     },
 }, { collection: 'market' });
 

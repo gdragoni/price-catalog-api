@@ -3,14 +3,22 @@ const Market = require('../model/Market');
 class MarketController {
 
     async store(req, res) {
-        const data = await Market.create(req.body);
-
+        var data;
+        try {
+            data = await Market.create(req.body);
+        } catch(e) {
+            return res.status(500).json(e);
+        }
         return res.json(data);
     }
 
     async find(req, res) {
-        const data = await Market.find();
-
+        var data;
+        try {
+            data = await Market.find();
+        } catch(e) {
+            return res.status(500).json(e);
+        }
         return res.json(data);
     }
 }
