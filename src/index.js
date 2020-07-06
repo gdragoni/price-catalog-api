@@ -8,9 +8,14 @@ const UserController = require('./controller/User');
 const MarketController = require('./controller/Market');
 const pathsWithoutSession = [
     '/',
-    'user/register',
+    '/user/register',
     '/user/login',
 ];
+const pathsOnlyAdmin = [
+    '/loja/add',
+    '/loja/update',
+    '/loja/delete',
+]
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -36,18 +41,30 @@ app.use((err, req, res, next) => {
 });
 app.use(async (req, res, next) => {
     if(pathsWithoutSession.includes(req.originalUrl)) return next();
+    if(pathsOnlyAdmin.includes(req.originalUrl) && req.user.email != process.env.TCC_USER_ADMIN) {
+        return res.status(401).json({
+                    message: "Token inválido"
+                });
+    }
     await UserController.check(res, req, next);
 });
 
-app.get('/', (req, res) => res.send("<h1>Greiziele <3</h1>"));
+app.get('/', (req, res) => res.send("<h1>Greiziele amor da minha vida <3</h1>"));
 
 app.get('/loja', MarketController.find);
-app.post('/loja/add', MarketController.store)
+app.post('/loja/add', MarketController.store);
+app.put('/loja/update', MarketController.update);
+app.delete('/loja/update', MarketController.delete);
 
 app.post('/user/register', UserController.register);
 app.post('/user/login', UserController.login);
-app.post('/user/delete', UserController.delete);
+app.delete('/user/delete', UserController.delete);
+app.put('/user/update', UserController.update);
 
-mongoose.connect(process.env.MONGOLAB_URI, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => console.log(`MongoDB succefully`));
+mongoose.connect(process.env.MONGOLAB_URI, { 
+    useUnifiedTopology: true, 
+    useNewUrlParser: true,
+    useFindAndModify: false,
+}).then(() => console.log(`MongoDB succefully`));
 
 app.listen(process.env.PORT || 3000, () => console.log('Is running'));

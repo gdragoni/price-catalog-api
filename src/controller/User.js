@@ -1,5 +1,5 @@
 const User = require('../model/User');
-const jwt = require('jsonwebtoken');
+const { generateJWTToken } = require('../util/jwt');
 
 class UserController {
     async check(req, res, next) {
@@ -43,13 +43,7 @@ class UserController {
             return res.status(500).json(e);
         }
         if(data.length) {
-            const user = {
-                id: data[0].id,
-                name: data[0].name,
-                password: data[0].password,
-                email: data[0].email,
-            }
-            let token = jwt.sign(user, process.env.JWT_SECRET_TCC, { expiresIn: '7d' });
+            const token = generateJWTToken(data[0]);
             return res.json({
                 token,
             });
@@ -58,6 +52,18 @@ class UserController {
                 message: "Usuário ou senha inválidos"
             })
         }
+    }
+
+    async update(req, res) {
+        var newToken;
+        try {
+            await User.findByIdAndUpdate(req.user.id, req.body);
+            const userData = await User.findById(req.user.id);
+            newToken = generateJWTToken(userData);
+        } catch(e) {
+            return res.status(500).json(e);
+        }
+        return res.json({ message: "Usuário alterado", newToken });
     }
 
     async delete(req, res) {
