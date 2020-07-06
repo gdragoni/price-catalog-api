@@ -54,7 +54,7 @@ app.get('/', (req, res) => res.send("<h1>Greiziele amor da minha vida <3</h1>"))
 app.get('/loja', MarketController.find);
 app.post('/loja/add', MarketController.store);
 app.put('/loja/update', MarketController.update);
-app.delete('/loja/update', MarketController.delete);
+app.delete('/loja/delete', MarketController.delete);
 
 app.post('/user/register', UserController.register);
 app.post('/user/login', UserController.login);
