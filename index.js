@@ -2,10 +2,12 @@ const express = require('express');
 const jwt = require('express-jwt');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
-
 const app = express();
-const UserController = require('./controller/User');
-const MarketController = require('./controller/Market');
+const MulterUpload = require('./src/util/multer');
+const UserController = require('./src/controller/User');
+const MarketController = require('./src/controller/Market');
+const ProductController = require('./src/controller/Product');
+
 const pathsWithoutSession = [
     '/',
     '/user/register',
@@ -17,6 +19,8 @@ const pathsOnlyAdmin = [
     '/loja/delete',
 ]
 
+app.use('/images', express.static(__dirname + '/uploads'));
+console.log(__dirname);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -60,6 +64,9 @@ app.post('/user/register', UserController.register);
 app.post('/user/login', UserController.login);
 app.delete('/user/delete', UserController.delete);
 app.put('/user/update', UserController.update);
+
+app.post('/produto/add', ProductController.store);
+app.post('/produto/upload', MulterUpload.single('file'), ProductController.uploadImage);
 
 mongoose.connect(process.env.MONGOLAB_URI, { 
     useUnifiedTopology: true, 
