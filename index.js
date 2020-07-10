@@ -17,6 +17,7 @@ const pathsOnlyAdmin = [
     '/loja/add',
     '/loja/update',
     '/loja/delete',
+    '/images/*'
 ]
 
 app.use('/images', express.static(__dirname + '/uploads'));
@@ -65,6 +66,7 @@ app.post('/user/login', UserController.login);
 app.delete('/user/delete', UserController.delete);
 app.put('/user/update', UserController.update);
 
+app.get('/produto', ProductController.find);
 app.post('/produto/add', ProductController.store);
 app.post('/produto/upload', MulterUpload.single('file'), ProductController.uploadImage);
 
