@@ -8,6 +8,7 @@ const MulterUpload = require('./src/util/multer');
 const UserController = require('./src/controller/User');
 const MarketController = require('./src/controller/Market');
 const ProductController = require('./src/controller/Product');
+const CommentController = require('./src/controller/Comment');
 
 const pathsWithoutSession = [
     '/',
@@ -19,6 +20,7 @@ const pathsOnlyAdmin = [
     '/loja/add',
     '/loja/update',
     '/loja/delete',
+    '/produto/removeLastWeek',
 ]
 
 app.use('/images', express.static(__dirname + '/uploads'));
@@ -55,6 +57,8 @@ app.use(async (req, res, next) => {
         return res.status(401).json({
                     message: "Token inválido"
                 });
+    } else {
+        req.user.isAdmin = true
     }
     await UserController.check(res, req, next);
 });
@@ -71,10 +75,16 @@ app.post('/user/login', UserController.login);
 app.delete('/user/delete', UserController.delete);
 app.put('/user/update', UserController.update);
 
-app.get('/produto/lastWeek', ProductController.findAndRemoveLastWeek);
+app.delete('/produto/removeLastWeek', ProductController.findAndRemoveLastWeek);
 app.get('/produto', ProductController.find);
 app.post('/produto/add', ProductController.store);
+app.delete('/produto/delete', ProductController.delete);
 app.post('/produto/upload', MulterUpload.single('file'), ProductController.uploadImage);
+
+app.get('/comment', CommentController.find);
+app.post('/comment/add', CommentController.store);
+app.put('/comment/update', CommentController.update);
+app.delete('/comment/delete', CommentController.delete);
 
 mongoose.connect(process.env.MONGOLAB_URI, { 
     useUnifiedTopology: true, 

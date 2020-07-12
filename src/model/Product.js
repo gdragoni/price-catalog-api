@@ -5,11 +5,15 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    userID: {
+        type: String,
+        required: true,
+    },
     description: {
         type: String,
         required: false,
     },
-    data: {
+    date: {
         type: Date,
         required: true
     },
