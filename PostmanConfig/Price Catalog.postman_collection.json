@@ -1,0 +1,610 @@
+{
+	"info": {
+		"_postman_id": "609a035e-3e24-4a2e-83a5-146d62dfcb0b",
+		"name": "Price Catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Loja",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Teste\",\n    \"type\": 2,\n    \"lat\": -47.23423,\n    \"lng\": -22.54534\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loja/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loja",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/loja?lat=-22.401127&lng=-47.580483&range=20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loja"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "-22.401127"
+								},
+								{
+									"key": "lng",
+									"value": "-47.580483"
+								},
+								{
+									"key": "range",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"5f03886f61fc3600179ae96e\",\n    \"name\": \"Supermercado Jooj\",\n    \"type\": 1,\n    \"lat\": -22.30000,\n    \"lng\": -47.548035\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loja/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loja",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/loja/delete?id=5f03886f61fc3600179ae96e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loja",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f03886f61fc3600179ae96e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "952ac73a-f2af-4115-ba3e-c611a61143ba",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac6e5365-eaa6-43b3-95de-6ddf10d90366",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"jwdToken\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"ga.dragoni@gmail.com\",\n    \"password\": \"fusca86\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Gabriel Teste\",\n    \"password\": \"123456\",\n    \"email\": \"ga.teste@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Gabriel Angelo Dragoni\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marketID\": \"5efd15b137ab37bd8c1d0222\",\n    \"description\": \"Coxinha\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/produto/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produto",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/gdragoni/Desktop/coxinha-de-frango-da-palmirinha-1920x1080.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/produto/upload?id=5f0b6e29f633af299e69ef55",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produto",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f0b6e29f633af299e69ef55"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Image",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/images/5f07b1f6bbc2af0017da2ba1-1594339846409.jpeg",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"images",
+								"5f07b1f6bbc2af0017da2ba1-1594339846409.jpeg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/produto?marketID=5efd15b137ab37bd8c1d0222",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produto"
+							],
+							"query": [
+								{
+									"key": "marketID",
+									"value": "5efd15b137ab37bd8c1d0222"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete last week",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/produto/removeLastWeek",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produto",
+								"removeLastWeek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/produto/delete?id=5f0b6d19f633af299e69ef50",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produto",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f0b6d19f633af299e69ef50"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comment\": \"Bom!\",\n    \"productID\": \"5f0b6e29f633af299e69ef55\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/comment?productID=5f0b6e29f633af299e69ef55",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment"
+							],
+							"query": [
+								{
+									"key": "productID",
+									"value": "5f0b6e29f633af299e69ef55"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"5f0b6e36f633af299e69ef56\",\n    \"comment\": \"Bom demais!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwdToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/comment/delete?id=5f0b708af633af299e69ef57",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f0b708af633af299e69ef57"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
