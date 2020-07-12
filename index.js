@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('express-jwt');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
+const cron = require("node-cron");
 const app = express();
 const MulterUpload = require('./src/util/multer');
 const UserController = require('./src/controller/User');
@@ -12,18 +13,22 @@ const pathsWithoutSession = [
     '/',
     '/user/register',
     '/user/login',
+    '/images/*'
 ];
 const pathsOnlyAdmin = [
     '/loja/add',
     '/loja/update',
     '/loja/delete',
-    '/images/*'
 ]
 
 app.use('/images', express.static(__dirname + '/uploads'));
-console.log(__dirname);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+cron.schedule("0 4 * * tue", async () => {
+    console.log("Deletando produtos da semana passada");
+    await ProductController.findAndRemoveLastWeek();
+});
 
 app.use(jwt({ 
     secret: process.env.JWT_SECRET_TCC, 
@@ -66,6 +71,7 @@ app.post('/user/login', UserController.login);
 app.delete('/user/delete', UserController.delete);
 app.put('/user/update', UserController.update);
 
+app.get('/produto/lastWeek', ProductController.findAndRemoveLastWeek);
 app.get('/produto', ProductController.find);
 app.post('/produto/add', ProductController.store);
 app.post('/produto/upload', MulterUpload.single('file'), ProductController.uploadImage);
