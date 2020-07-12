@@ -9,6 +9,7 @@ const UserController = require('./src/controller/User');
 const MarketController = require('./src/controller/Market');
 const ProductController = require('./src/controller/Product');
 const CommentController = require('./src/controller/Comment');
+const FSController = require('./src/util/fs');
 
 const pathsWithoutSession = [
     '/',
@@ -22,6 +23,8 @@ const pathsOnlyAdmin = [
     '/loja/delete',
     '/produto/removeLastWeek',
 ]
+
+FSController.createUploadDirIfNeeded();
 
 app.use('/images', express.static(__dirname + '/uploads'));
 app.use(bodyParser.urlencoded({ extended: true }));
