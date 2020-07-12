@@ -48,7 +48,12 @@ app.use(jwt({
     },
 }).unless({ path: pathsWithoutSession }));
 app.use((err, req, res, next) => {
-    if(err.name === 'UnauthorizedError') {
+    const imgUrlRegex = new RegExp('/images/*');
+    if(err.name === 'UnauthorizedError' && imgUrlRegex.test(req.originalUrl)) {
+        res.status(404).json({
+            message: "Imagem não encontrada"
+        })
+    } else if(err.name === 'UnauthorizedError') {
         res.status(401).json({
             message: "Token inválido"
         });
