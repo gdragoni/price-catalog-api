@@ -45,6 +45,7 @@ class UserController {
         if(data.length) {
             const token = generateJWTToken(data[0]);
             return res.json({
+                ...data[0],
                 token,
             });
         } else {
