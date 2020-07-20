@@ -27,10 +27,10 @@ class MarketController {
         try {
             let findQuery;
             const {
-                lat, lng, range
+                latitude, longitude, range
             } = req.query;
-            if(lat != null && lng != null && range != null) {
-                const coord = new Coordinate(lat, lng);
+            if(latitude != null && longitude != null && range != null) {
+                const coord = new Coordinate(latitude, longitude);
                 findQuery = coord.findRange(range);
             }
             data = await Market.find(findQuery);

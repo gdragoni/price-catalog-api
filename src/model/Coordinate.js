@@ -17,8 +17,8 @@ class Coodinate {
         var ky = 40000 / 360;
         var kx = Math.cos(Math.PI * this.latitude / 180.0) * ky;
         return { 
-            lat: { $lte: this.latitude+(km/ky), $gte: this.latitude-(km/kx) },
-            lng: { $lte: this.longitude+(km/ky), $gte: this.longitude-(km/kx) },
+            latitude: { $lte: this.latitude+(km/ky), $gte: this.latitude-(km/kx) },
+            longitude: { $lte: this.longitude+(km/ky), $gte: this.longitude-(km/kx) },
         }
     }
 }
