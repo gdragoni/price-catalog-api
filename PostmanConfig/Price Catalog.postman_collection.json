@@ -21,7 +21,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Teste\",\n    \"type\": 2,\n    \"lat\": -47.23423,\n    \"lng\": -22.54534\n}",
+							"raw": "{\n    \"name\": \"Teste\",\n    \"type\": 2,\n    \"latitude\": -47.23423,\n    \"longitude\": -22.54534\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -56,7 +56,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/loja?lat=-22.401127&lng=-47.580483&range=20",
+							"raw": "{{baseUrl}}/loja?latitude=-22.401127&longitude=-47.580483&range=20",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -65,11 +65,11 @@
 							],
 							"query": [
 								{
-									"key": "lat",
+									"key": "latitude",
 									"value": "-22.401127"
 								},
 								{
-									"key": "lng",
+									"key": "longitude",
 									"value": "-47.580483"
 								},
 								{
@@ -94,7 +94,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"5f03886f61fc3600179ae96e\",\n    \"name\": \"Supermercado Jooj\",\n    \"type\": 1,\n    \"lat\": -22.30000,\n    \"lng\": -47.548035\n}",
+							"raw": "{\n    \"id\": \"5f03886f61fc3600179ae96e\",\n    \"name\": \"Supermercado Jooj\",\n    \"type\": 1,\n    \"latitude\": -22.30000,\n    \"longitude\": -47.548035\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -345,7 +345,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{baseUrl}}/produto/upload?id=5f0b6e29f633af299e69ef55",
+							"raw": "{{baseUrl}}/produto/upload?id=5f0b74425c731d00170faa2b",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -356,7 +356,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "5f0b6e29f633af299e69ef55"
+									"value": "5f0b74425c731d00170faa2b"
 								}
 							]
 						}
@@ -376,13 +376,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/images/5f07b1f6bbc2af0017da2ba1-1594339846409.jpeg",
+							"raw": "{{baseUrl}}/images/5f0b74425c731d00170faa2b-1594589935168.jpg",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"images",
-								"5f07b1f6bbc2af0017da2ba1-1594339846409.jpeg"
+								"5f0b74425c731d00170faa2b-1594589935168.jpg"
 							]
 						}
 					},
@@ -453,7 +453,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/produto/delete?id=5f0b6d19f633af299e69ef50",
+							"raw": "{{baseUrl}}/produto/delete?id=5f0b6e29f633af299e69ef55",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -464,7 +464,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "5f0b6d19f633af299e69ef50"
+									"value": "5f0b6e29f633af299e69ef55"
 								}
 							]
 						}
@@ -490,7 +490,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": \"Bom!\",\n    \"productID\": \"5f0b6e29f633af299e69ef55\"\n}",
+							"raw": "{\n    \"comment\": \"Bom!\",\n    \"productID\": \"5f0b74425c731d00170faa2b\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
