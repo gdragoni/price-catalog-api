@@ -31,8 +31,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 cron.schedule("0 4 * * tue", async () => {
-    console.log("Deletando produtos da semana passada");
-    await ProductController.findAndRemoveLastWeek();
+    console.log("Deletando produtos da semana passada! ROTINA DESATIVADA!");
+    // await ProductController.findAndRemoveLastWeek();
 });
 
 app.use(jwt({ 
