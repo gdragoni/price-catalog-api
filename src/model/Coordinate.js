@@ -5,12 +5,16 @@ class Coodinate {
         this.longitude = Number(longitude);
     }
 
-    arePointsNear(checkPoint, km) {
+    distance(checkPoint) {
         var ky = 40000 / 360;
         var kx = Math.cos(Math.PI * this.latitude / 180.0) * ky;
         var dx = Math.abs(this.longitude - checkPoint.longitude) * kx;
         var dy = Math.abs(this.latitude - checkPoint.latitude) * ky;
-        return Math.sqrt(dx * dx + dy * dy) <= km;
+        return Math.sqrt(dx * dx + dy * dy)
+    }
+
+    arePointsNear(checkPoint, km) {
+        return this.distance(checkPoint) <= km;
     }
 
     findRange(km) {

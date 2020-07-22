@@ -34,6 +34,22 @@ class MarketController {
                 findQuery = coord.findRange(range);
             }
             data = await Market.find(findQuery);
+            data.forEach(function(m){
+                if(latitude != null && longitude != null && range != null) {
+                    const userCoord = new Coordinate(latitude, longitude);
+                    const mCoord = new Coordinate(m.latitude, m.longitude);
+                    m.distance = userCoord.distance(mCoord);
+                }
+            });
+            data = data.sort(function(a, b) {
+                if(latitude != null && longitude != null && range != null) {
+                    const userCoord = new Coordinate(latitude, longitude);
+                    const aCoord = new Coordinate(a.latitude, a.longitude);
+                    const bCoord = new Coordinate(b.latitude, b.longitude);
+                    return userCoord.distance(aCoord) - userCoord.distance(bCoord);
+                }
+                return true
+            });
         } catch(e) {
             return res.status(500).json(e);
         }

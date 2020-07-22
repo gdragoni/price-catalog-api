@@ -13,6 +13,10 @@ const MarketSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    distance: {
+        type: Number,
+        required: false,
+    }
     type: {
         type: Number,
         required: true,
