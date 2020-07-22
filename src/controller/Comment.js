@@ -6,12 +6,13 @@ class CommentController {
     async store(req, res) {
         var data;
         try {
-            data = await Comment.create({ 
+            await Comment.create({ 
                 ...req.body, 
                 userID: req.user.id,
                 userName: req.user.name,
                 date: moment().toDate(),
             });
+            data = await Comment.find(req.body.productID);
         } catch(e) {
             return res.status(500).json(e);
         }
