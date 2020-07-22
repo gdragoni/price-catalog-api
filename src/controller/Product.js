@@ -80,6 +80,28 @@ class ProductController {
         }
         return res.json({ message: "Sucesso!" });
     }
+
+    async like(req, res) {
+        var data;
+        try {
+            const {
+                id: productID
+            } = req.query;
+            const {
+                id: userID
+            } = req.user;
+            data = await Product.findById(productID);
+            if(data.likes.includes(userID)) {
+                data.likes = data.likes.filter((d) => d != userID);
+            } else {
+                data.likes.push(userID);
+            }
+            data.save();
+        } catch(e) {
+            return res.status(500).json(e);
+        }
+        return res.json(data);
+    }
 }
 
 module.exports = new ProductController();

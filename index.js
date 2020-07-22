@@ -86,6 +86,7 @@ app.put('/user/update', UserController.update);
 app.delete('/produto/removeLastWeek', ProductController.findAndRemoveLastWeek);
 app.get('/produto', ProductController.find);
 app.post('/produto/add', ProductController.store);
+app.post('/produto/like', ProductController.like);
 app.delete('/produto/delete', ProductController.delete);
 app.post('/produto/upload', MulterUpload.single('file'), ProductController.uploadImage);
 
