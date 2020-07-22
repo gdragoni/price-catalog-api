@@ -9,6 +9,7 @@ class CommentController {
             data = await Comment.create({ 
                 ...req.body, 
                 userID: req.user.id,
+                userName: req.user.name,
                 date: moment().toDate(),
             });
         } catch(e) {
