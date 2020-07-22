@@ -17,6 +17,14 @@ const MarketSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    logo: {
+        type: String,
+        required: false,
+    },
+    address: {
+        type: String,
+        required: true,
+    },
 }, { collection: 'market' });
 
 module.exports = mongoose.model("market", MarketSchema);

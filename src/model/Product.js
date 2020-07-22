@@ -20,6 +20,10 @@ const ProductSchema = new mongoose.Schema({
     imageName: {
         type: String,
         required: false,
+    },
+    image: {
+        type: String,
+        required: false,
     }
 }, { collection: 'product' });
 
