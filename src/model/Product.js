@@ -24,7 +24,11 @@ const ProductSchema = new mongoose.Schema({
     image: {
         type: String,
         required: false,
-    }
+    },
+    likes: {
+        type: Array,
+        required: false,
+    },
 }, { collection: 'product' });
 
 module.exports = mongoose.model("product", ProductSchema);
