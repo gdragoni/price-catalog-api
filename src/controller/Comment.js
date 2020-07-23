@@ -12,7 +12,7 @@ class CommentController {
                 userName: req.user.name,
                 date: moment().toDate(),
             });
-            data = await Comment.find(req.body);
+            data = await Comment.find({ productID: req.body.productID });
         } catch(e) {
             return res.status(500).json(e);
         }
