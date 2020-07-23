@@ -1,6 +1,7 @@
 const Product = require('../model/Product');
 const Comment = require('../model/Comment');
 const moment = require('moment');
+const sharp = require('sharp');
 
 const FSController = require('../util/fs');
 
@@ -22,7 +23,8 @@ class ProductController {
 
     async uploadImage(req, res) {
         try {
-            await Product.findByIdAndUpdate(req.query.id, { imageName: req.body.fileName });
+            const imageBuffer = await sharp(req.file.path).resize({ width: 800 }).toBuffer();
+            await Product.findByIdAndUpdate(req.query.id, { imageName: req.body.fileName, image: `data:${req.file.mimetype};base64,${imageBuffer.toString("base64")}` });
         } catch(e) {
             return res.status(500).json(e);
         }
