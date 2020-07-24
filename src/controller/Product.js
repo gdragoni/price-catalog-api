@@ -37,7 +37,7 @@ class ProductController {
             const {
                 marketID
             } = req.query;
-            data = await Product.find({ marketID });
+            data = await Product.find({ marketID }).sort({ date: -1 });
         } catch(e) {
             return res.status(500).json(e);
         }
