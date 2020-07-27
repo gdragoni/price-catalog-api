@@ -37,6 +37,7 @@ b{
 	color: white;
 	float: right;
 	width: calc(100% - 128px);
+	padding-bottom: 30;
 }
 
 .title{

@@ -16,7 +16,8 @@ const pathsWithoutSession = [
     '/',
     '/user/register',
     '/user/login',
-    '/images/*'
+    '/images/*',
+    '/webpage/*',
 ];
 const pathsOnlyAdmin = [
     '/loja/add',
@@ -28,6 +29,8 @@ const pathsOnlyAdmin = [
 FSController.createUploadDirIfNeeded();
 
 app.use('/images', express.static(__dirname + '/uploads'));
+app.use('/android', express.static(__dirname + '/webpage/sources/android'));
+app.use('/ios', express.static(__dirname + '/webpage/sources/ios'));
 app.use(express.static(__dirname + '/webpage'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
