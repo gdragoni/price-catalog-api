@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const cron = require("node-cron");
 const app = express();
+const path = require('path');
 const MulterUpload = require('./src/util/multer');
 const UserController = require('./src/controller/User');
 const MarketController = require('./src/controller/Market');
@@ -27,6 +28,7 @@ const pathsOnlyAdmin = [
 FSController.createUploadDirIfNeeded();
 
 app.use('/images', express.static(__dirname + '/uploads'));
+app.use(express.static(__dirname + '/webpage'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -71,7 +73,9 @@ app.use(async (req, res, next) => {
     await UserController.check(res, req, next);
 });
 
-app.get('/', (req, res) => res.send("<h1>Greiziele amor da minha vida <3</h1>"));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname+'/webpage/index.html'))
+});
 
 app.get('/loja', MarketController.find);
 app.post('/loja/add', MarketController.store);

@@ -1,0 +1,135 @@
+body{
+	color: rgb(247,255,255);
+	padding-bottom: 30px;
+	font-family: 'Roboto', sans-serif;
+}
+
+b{
+	font-weight: 500;
+}
+
+.principal{
+	background-image: url('../img_pmt/background.png');
+	background-color: rgb(0,80,139);
+	min-height: 150px;
+	padding-top: 20px;
+}
+
+.logo{
+	width: 150px;
+}
+
+.footer{
+	padding-left: 37px;
+}
+
+.title{
+    font-size: 38px;
+    padding-top: 15px;
+    font-weight: 100;
+}
+
+p{
+	line-height: 22px;
+    font-size: 25px;
+    font-style: italic;
+
+}
+
+.buttondiv{
+	margin-top: 75px; 
+	padding-left: 30px;
+}
+
+.button{
+	width: 150px;
+}
+
+.footer{
+	margin-top: 15px;
+	padding-left: 37px !important;
+}
+
+.footer img{
+	width: 150px;
+}
+
+.container-fluid{
+	margin: 0px;
+	padding: 0px;
+}
+
+.textdiv{
+	margin-top: 65px; 
+	padding-left: 30px;
+}
+
+.row{
+	margin: 0px;
+}
+
+@media (min-width: 500px){
+	.footer{
+		padding-left: 30px;
+	}
+	.footer img{
+		width: 280px;
+	}
+	.titlediv{
+		margin-left: 150px;
+	}
+
+	.title {
+    	font-size: 80px;
+    	padding-top: 15px;
+	}
+	.logo{
+		width: 245px;
+	}
+	p {
+    	font-size: 70px;
+    	font-style: italic;
+    	line-height: 69px;
+	}
+	.button{
+		width: 290px;
+	}
+	.principal{
+		background-size: 1700px 1500px;
+    	background-repeat: no-repeat;
+	}
+	.buttondiv{
+		margin-top: 210px; 
+		padding-left: 30px;
+	}
+	.textdiv{
+		margin-top: 80px; 
+		padding-left: 30px;
+	}
+}
+@media (min-width: 500px) and (orientation: landscape){
+	.footer img{
+		width: 150px;
+	}
+	.titlediv{
+		margin-left: 0px;
+	}
+	.title {
+    	font-size: 38px;
+    	padding-top: 15px;
+	}
+	.logo{
+		width: 150px;
+	}
+	p {
+    	font-size: 25px;
+    	font-style: italic;
+    	line-height: 22px;
+	}
+	.button{
+		width: 150px;
+	}
+	.principal{
+		background-size: 1700px 1500px;    	background-repeat: no-repeat;
+	}
+}
