@@ -29,6 +29,10 @@ const ProductSchema = new mongoose.Schema({
         type: Array,
         required: false,
     },
+    likeMessage: {
+        type: String,
+        required: false,
+    },
 }, { collection: 'product' });
 
 module.exports = mongoose.model("product", ProductSchema);
