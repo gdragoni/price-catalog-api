@@ -11,7 +11,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://mobile.luxfacta.com/vernyy/ios/pdg-concierge-QA.ipa</string>
+					<string>https://price-catalog-tcc.herokuapp.com/ios/offer.ipa</string>
 				</dict>
 				<dict>
 					<key>kind</key>
@@ -29,13 +29,13 @@
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>com.luxfacta.enterprise.pdg-concierge</string>
+				<string>com.dragoni.price-catalog-tcc</string>
 				<key>bundle-version</key>
 				<string>1</string>
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
-				<string>Vernyy QA</string>
+				<string>Offer</string>
 			</dict>
 		</dict>
 	</array>
