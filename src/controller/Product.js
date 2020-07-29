@@ -2,6 +2,7 @@ const Product = require('../model/Product');
 const Comment = require('../model/Comment');
 const moment = require('moment');
 const sharp = require('sharp');
+const likeMessage = require('../util/likeMessage');
 
 const FSController = require('../util/fs');
 
@@ -39,21 +40,7 @@ class ProductController {
             } = req.query;
             data = await Product.find({ marketID }).sort({ date: -1 });
             data.forEach(function(p) {
-                const likes = p.likes;
-                const userLiked = likes.includes(req.user.id);
-                if(userLiked && likes && likes.length == 2) {
-                    p.likeMessage = `Você e outra pessoa curtiu esse produto`;
-                } else if(userLiked && likes && likes.length == 1) {
-                    p.likeMessage = "Você curtiu esse produto";
-                } else if(userLiked && likes && likes.length > 2) {
-                    p.likeMessage = `Você e outros ${likes.length-1} curtiram esse produto`;
-                } else if(!userLiked && likes && likes.length > 1) {
-                    p.likeMessage = `${likes.length} curtiram esse produto`;
-                } else if(!userLiked && likes && likes.length == 1) {
-                    p.likeMessage = `1 pessoa curtiu esse produto`;
-                } else if(likes.length == 0) {
-                    p.likeMessage = "Ninguém curtiu esse produto ainda";
-                }
+                p.likeMessage = likeMessage(p.likes, p.likes.includes(req.user.id));
             });
         } catch(e) {
             return res.status(500).json(e);
@@ -115,7 +102,8 @@ class ProductController {
             } else {
                 data.likes.push(userID);
             }
-            data.save();
+            await data.save();
+            data.likeMessage = likeMessage(data.likes, data.likes.includes(req.user.id));
         } catch(e) {
             return res.status(500).json(e);
         }
