@@ -30,7 +30,9 @@ b{
 .footer{
 	padding-left: 37px;
 	width: 100%;
-    display: grid;
+	display: grid;
+	width: calc(100% - 128px);
+	margin-left: 30;
 }
 
 .copyright {
