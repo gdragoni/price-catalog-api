@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/gdragoni/price-catalog-api#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "express-jwt": "^6.0.0",
     "fs": "0.0.1-security",
     "moment": "^2.27.0",
